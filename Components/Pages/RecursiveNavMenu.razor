@@ -1,0 +1,59 @@
+<RadzenPanelMenuItem Text=@NestedMarkdownPosts.Key Icon="home">
+    @if (_standaloneMarkdownPosts.Any())
+    {
+        foreach (string standaloneMarkdownPost in _standaloneMarkdownPosts)
+        {
+            <MarkdownPostLink MarkdownFilePath=@($"{NestedMarkdownPosts.Key}/{standaloneMarkdownPost}") />
+        }
+    }
+    @if (_nestedMarkdownPosts.Any())
+    {
+        foreach (KeyValuePair<string, List<string>> nestedMarkdownPost in _nestedMarkdownPosts)
+        {
+            <RecursiveNavMenu NestedMarkdownPosts=@nestedMarkdownPost />
+        }
+    }
+</RadzenPanelMenuItem>
+
+
+@code {
+    [Parameter] public required KeyValuePair<string, List<string>> NestedMarkdownPosts { get; set; }
+    private HashSet<string> _standaloneMarkdownPosts = new();
+    private Dictionary<string, List<string>> _nestedMarkdownPosts = new();
+
+    protected override void OnParametersSet() => Process();
+
+    private void Process()
+    {
+        try
+        {
+             //_standaloneMarkdownPosts = NestedMarkdownPosts.Value?
+             //   .Select(path => path.Split('/', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+             //       .Where(segments => segments.Length >= 2 && segments[1].EndsWith(".md", StringComparison.OrdinalIgnoreCase))
+             //       .Select(segments => Path.GetFileNameWithoutExtension(segments[1]))
+             //   .ToHashSet() ?? new HashSet<string>();
+
+            _standaloneMarkdownPosts = NestedMarkdownPosts.Value?
+                .Select(path => !path.Contains('/')).ToHashSet();
+
+            //_nestedMarkdownPosts = NestedMarkdownPosts.Value!
+            //    .Where(path => !_standaloneMarkdownPosts.Contains(path))
+            //    .Select(path => {
+            //        var segments = path.Split('/');
+            //        return new {
+            //            Key = segments[1],
+            //            RemainingPath = string.Join('/', segments.Skip(1))
+            //        };
+            //    })
+            //    .GroupBy(
+            //        x => x.Key,
+            //        x => x.RemainingPath
+            //    )
+            //    .ToDictionary(
+            //        g => g.Key,
+            //        g => g.ToList()
+            //    );
+        }
+        catch (Exception) { }
+    }
+}

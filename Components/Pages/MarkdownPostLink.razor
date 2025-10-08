@@ -1,0 +1,11 @@
+<RadzenPanelMenuItem Text=@_markdownFileName Path=@($"DigitalGarden/{MarkdownFilePath}") Icon="description" />
+
+@code {
+    [Parameter] public required string MarkdownFilePath { get; set; }
+    private string _markdownFileName = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        _markdownFileName = Path.GetFileNameWithoutExtension(MarkdownFilePath);
+    }
+}

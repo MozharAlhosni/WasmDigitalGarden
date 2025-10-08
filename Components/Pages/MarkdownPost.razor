@@ -1,0 +1,23 @@
+@page "/DigitalGarden/{*MarkdownFilePath}"
+@inject HttpClient HttpClient
+
+<PageTitle>@pageTitle</PageTitle>
+
+<RadzenMarkdown class="rz-p-0 rz-p-md-12" AutoLinkHeadingDepth="6" Text="@markdownFileContent" />
+
+@code {
+    [Parameter] public required string MarkdownFilePath { get; set; } 
+    private string pageTitle = string.Empty;
+    private string markdownFileContent = string.Empty;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        try
+        {
+            pageTitle = Path.GetFileNameWithoutExtension(MarkdownFilePath);
+            MarkdownFilePath = MarkdownFilePath.EndsWith(".md") ? MarkdownFilePath : MarkdownFilePath + ".md";
+            markdownFileContent = await HttpClient.GetStringAsync("DigitalGarden/" + MarkdownFilePath);
+        }
+        catch (Exception) { }
+    }
+}

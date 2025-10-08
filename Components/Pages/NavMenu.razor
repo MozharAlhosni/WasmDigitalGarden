@@ -1,0 +1,68 @@
+﻿@inject HttpClient HttpClient
+
+<RadzenPanelMenu Multiple=true>
+    @if (!_manifestLoaded)
+    {
+        <RadzenPanelMenuItem Text="Loading..." Style="cursor: not-allowed; pointer-events: none" />
+    }
+
+    @if (_manifestLoaded)
+    {
+        @if (_standaloneMarkdownPosts.Any())
+        {
+            foreach (string post in _standaloneMarkdownPosts)
+            {
+                <MarkdownPostLink MarkdownFilePath=@($"{post}") />
+            }
+        }
+
+        @if (_nestedMarkdownPosts.Any())
+        {
+            foreach (KeyValuePair<string, List<string>> nestedMarkdownPost in _nestedMarkdownPosts)
+            {
+                <RecursiveNavMenu NestedMarkdownPosts=@nestedMarkdownPost />
+            }
+        }
+    }
+</RadzenPanelMenu>
+
+
+@code {
+    private bool _manifestLoaded;
+    private HashSet<string> _standaloneMarkdownPosts = new();
+    private Dictionary<string, List<string>> _nestedMarkdownPosts = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        string manifest = await HttpClient.GetStringAsync("DigitalGarden/manifest.txt");
+        ProcessManifest(manifest);
+        _manifestLoaded = true;
+    }
+
+    private void ProcessManifest(string manifest)
+    {
+        List<string> paths = manifest
+        .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+        .ToList();
+
+        _standaloneMarkdownPosts = paths
+        .Where(
+        path => !path.Contains('/')
+        && path.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
+        && "Home.md" != path
+        )
+        .Select(path => path[..^3])
+        .ToHashSet();
+
+        _nestedMarkdownPosts = paths
+        .Where(path => path.Contains('/'))
+        .GroupBy(
+        path => path.Split('/')[0],
+        path => path
+        )
+        .ToDictionary(
+        g => g.Key,
+        g => g.ToList()
+        );
+    }
+}

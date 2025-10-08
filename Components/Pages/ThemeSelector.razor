@@ -1,0 +1,15 @@
+@inject ThemeService ThemeService
+
+<div style="margin-right: 5px">
+    <RadzenDropDown TValue="string" Value=@ThemeService.Theme ValueChanged=@ChangeTheme Data=@FreeLightThemes TextProperty=@nameof(Theme.Text) ValueProperty=@nameof(Theme.Value) />
+</div>
+
+@code {
+    IEnumerable<Theme> FreeLightThemes = Themes.Free.
+        Where(theme => !theme.Value.Contains("dark", StringComparison.OrdinalIgnoreCase));
+    
+    private void ChangeTheme(string value)
+    {
+        ThemeService.SetTheme(value);
+    }
+}

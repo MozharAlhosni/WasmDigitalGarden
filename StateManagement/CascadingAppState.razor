@@ -1,0 +1,86 @@
+@* @inject HttpClient HttpClient
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+
+@code {
+    [Parameter] public required RenderFragment ChildContent { get; set; }
+    [Parameter] public bool ManifestLoaded { get; set; }
+
+    private HashSet<string> _standaloneMarkdownPosts = new();
+    private Dictionary<string, List<string>> _nestedMarkdownPosts = new();
+
+    public HashSet<string> StandaloneMarkdownPosts
+    {
+        get => _standaloneMarkdownPosts;
+        set { _standaloneMarkdownPosts = value; StateHasChanged(); }
+    }
+
+    public Dictionary<string, List<string>> NestedMarkdownPosts
+    {
+        get => _nestedMarkdownPosts;
+        set { _nestedMarkdownPosts = value; StateHasChanged(); }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        string manifest = await HttpClient.GetStringAsync("DigitalGarden/manifest.txt");
+        ProcessManifest(manifest);
+        ManifestLoaded = true;
+    }
+
+    private void ProcessManifest(string manifest)
+    {
+        List<string> paths = manifest
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .ToList();
+        
+        _standaloneMarkdownPosts = paths
+            .Where(
+                path => !path.Contains('/')
+                && path.EndsWith(".md")
+                && path != "Home.md"
+            )
+            .Select(path => path[..^3])
+            .ToHashSet();
+
+        _nestedMarkdownPosts = paths
+            .Where(path => path.Contains('/'))
+            .GroupBy(
+                path => path.Split('/')[0],
+                path => path
+            )
+            .ToDictionary(
+                g => g.Key,
+                g => g.ToList()
+            );
+
+         _nestedMarkdownPosts = paths
+            .Select(path => {
+                var segments = path.Split('/');
+                return new {
+                    Key = segments[0],
+                    ReaminingPath = string.Join('/', segments.Skip(1))
+                };
+            })
+            .GroupBy(
+                x => x.Key,
+                x => x.ReaminingPath
+            )
+            .ToDictionary(
+                g => g.Key,
+                g => g.ToList()
+            ); 
+
+        foreach(var x in _nestedMarkdownPosts.Values)
+        {
+            foreach(string y in x)
+            {
+                Console.WriteLine(y);
+                Console.WriteLine("---");
+            }
+        }
+    }
+} *@

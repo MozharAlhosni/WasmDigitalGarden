@@ -1,0 +1,1 @@
+https://www.netlify.com/ provides static-site hosting solutions
