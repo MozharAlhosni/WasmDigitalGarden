@@ -10,9 +10,9 @@
     {
         @if (_standaloneMarkdownPosts.Any())
         {
-            foreach (string post in _standaloneMarkdownPosts)
+            foreach (string markdownFilePath in _standaloneMarkdownPosts)
             {
-                <MarkdownPostLink MarkdownFilePath=@($"{post}") />
+                <MarkdownPostLink MarkdownFilePath=@($"{markdownFilePath}") />
             }
         }
 
@@ -20,7 +20,7 @@
         {
             foreach (KeyValuePair<string, List<string>> nestedMarkdownPost in _nestedMarkdownPosts)
             {
-                <RecursiveNavMenu NestedMarkdownPosts=@nestedMarkdownPost />
+                <RecursiveCategoryNavMenu NestedMarkdownPosts=@nestedMarkdownPost />
             }
         }
     }
@@ -42,27 +42,29 @@
     private void ProcessManifest(string manifest)
     {
         List<string> paths = manifest
-        .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-        .ToList();
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .ToList();
 
         _standaloneMarkdownPosts = paths
-        .Where(
-        path => !path.Contains('/')
-        && path.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
-        && "Home.md" != path
-        )
-        .Select(path => path[..^3])
-        .ToHashSet();
+            .Where(
+                path => !path.Contains('/')
+                && path.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
+                && "Home.md" != path
+            )
+            .Select(path => path[..^3])
+            .ToHashSet();
+
+        int indexToSplitAt = 0;
 
         _nestedMarkdownPosts = paths
-        .Where(path => path.Contains('/'))
-        .GroupBy(
-        path => path.Split('/')[0],
-        path => path
-        )
-        .ToDictionary(
-        g => g.Key,
-        g => g.ToList()
-        );
+            .Where(path => path.Contains('/'))
+            .GroupBy(
+                path => path.Split('/')[indexToSplitAt],
+                path => path
+            )
+            .ToDictionary(
+                g => g.Key,
+                g => g.ToList()
+            );
     }
 }

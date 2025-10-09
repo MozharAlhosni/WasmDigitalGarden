@@ -4,7 +4,7 @@
 <RadzenLayout>
     <RadzenHeader>
         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="7">
-            <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" />
+            <RadzenSidebarToggle Click="@(() => _sidebarExpanded = !_sidebarExpanded)" />
             <RadzenLink Text="Mozhar's Digital Garden" Style="white-space: nowrap" Path="/" />
             <RadzenSplitter />
             <RadzenAppearanceToggle />
@@ -16,7 +16,7 @@
         <RadzenTheme Theme="material-dark" />
     </HeadContent>
     <RadzenComponents />
-    <RadzenSidebar @bind-Expanded="@sidebarExpanded">
+    <RadzenSidebar @bind-Expanded="@_sidebarExpanded">
         <NavMenu />
     </RadzenSidebar>
     <RadzenBody>
@@ -31,5 +31,5 @@
 
 
 @code {
-    bool sidebarExpanded = true;
+    private bool _sidebarExpanded = true;
 }
