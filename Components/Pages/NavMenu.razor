@@ -12,7 +12,7 @@
         {
             foreach (string markdownFilePath in _standaloneMarkdownPosts)
             {
-                <MarkdownPostLink MarkdownFilePath=@($"{markdownFilePath}") />
+                <MarkdownPostMenuItem MarkdownFilePath=@($"{markdownFilePath}") />
             }
         }
 
@@ -53,7 +53,7 @@
             )
             .Select(path => path[..^3])
             .ToHashSet();
-
+        
         int indexToSplitAt = 0;
 
         _nestedMarkdownPosts = paths

@@ -6,7 +6,6 @@ Academia/Research Papers/ResearchHub/Home.md
 Academia/Research Papers/Uncategorized.md
 Computer Science/.DS_Store
 Computer Science/AI and Machine Learning/.DS_Store
-Computer Science/AI and Machine Learning/Books/The Complete Obsolete Guide to Generative AI/Chapter 1: Understanding Generative AI.md
 Computer Science/AI and Machine Learning/Books/The Complete Obsolete Guide to Generative AI/Chapter 2: Managing Generative AI.md
 Computer Science/AI and Machine Learning/Platforms/OpenAI/API Reference.md
 Computer Science/AI and Machine Learning/Platforms/OpenAI/Playground.md

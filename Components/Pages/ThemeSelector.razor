@@ -1,7 +1,13 @@
 @inject ThemeService ThemeService
 
 <div style="margin-right: 5px">
-    <RadzenDropDown TValue="string" Value=@ThemeService.Theme ValueChanged=@ChangeTheme Data=@_freeLightThemes TextProperty=@nameof(Theme.Text) ValueProperty=@nameof(Theme.Value) />
+    <RadzenDropDown TValue="string" 
+                    Value=@ThemeService.Theme 
+                    ValueChanged=@ChangeTheme 
+                    Data=@_freeLightThemes 
+                    TextProperty=@nameof(Theme.Text) 
+                    ValueProperty=@nameof(Theme.Value)
+    />
 </div>
 
 @code {

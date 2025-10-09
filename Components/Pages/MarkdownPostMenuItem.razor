@@ -1,0 +1,16 @@
+<RadzenPanelMenuItem Text=@_markdownFileName
+                     Path=@($"DigitalGarden/{MarkdownFilePath}")
+                     Icon="Markdown"
+                     Style="@(IsNestedMenuItem ? "margin-left:15px;" : null)" 
+/>
+
+@code {
+    [Parameter] public required string MarkdownFilePath { get; set; }
+    [Parameter] public bool IsNestedMenuItem { get; set;} = false;
+    private string _markdownFileName = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        _markdownFileName = Path.GetFileNameWithoutExtension(MarkdownFilePath);
+    }
+}
