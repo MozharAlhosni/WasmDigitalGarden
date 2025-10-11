@@ -2,7 +2,7 @@
 # taken from https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml
 name: Deploy static content to Pages
 env:
-  PUBLISH_DIR: WasmDigitalGarden/bin/Release/**/publish/wwwroot
+  PUBLISH_DIR: WasmDigitalGarden/bin/Release/net9.0/publish
 
 on:
   # Runs on pushes targeting the default branch for the app's folder path
@@ -45,8 +45,11 @@ jobs:
         with:
           dotnet-version: '9.0'
 
+      - name: Show publish contents (debug)
+        run: ls -lah .
+          
       - name: Publish app
-        run: dotnet publish WasmDigitalGarden.csproj -c Release
+        run: dotnet publish ./WasmDigitalGarden/WasmDigitalGarden.csproj -c Release
 
       #- name: Rewrite base href
       #  uses: SteveSandersonMS/ghaction-rewrite-base-href@5b54862a8831e012d4f1a8b2660894415fdde8ec # v1.1.0
@@ -56,12 +59,6 @@ jobs:
         
       - name: Setup Pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
-
-      - name: Show publish contents (debug)
-        run: |
-          echo "Expected publish dir: ${{ env.PUBLISH_DIR }}"
-          ls -la ${{ env.PUBLISH_DIR }} || true
-          ls -la ${{ env.PUBLISH_DIR }}/* || true
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
