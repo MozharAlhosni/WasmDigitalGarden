@@ -1,7 +1,8 @@
+@using System.Text
 <RadzenPanelMenuItem Text=@_markdownFileName
                      Path=@($"DigitalGarden/{MarkdownFilePath}")
                      Icon="Markdown"
-                     Style="@(IsNestedMenuItem ? "margin-left:15px;" : null)" 
+                     Style=@GetMenuItemStyle()
 />
 
 @code {
@@ -12,5 +13,15 @@
     protected override void OnParametersSet()
     {
         _markdownFileName = Path.GetFileNameWithoutExtension(MarkdownFilePath);
+    }
+
+    private string GetMenuItemStyle()
+    {
+        string style = "overflow-wrap:anywhere;";
+        
+        if (IsNestedMenuItem)
+            style += "margin-left:10px;";
+
+        return style;
     }
 }

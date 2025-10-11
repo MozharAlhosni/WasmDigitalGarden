@@ -1,4 +1,8 @@
-<RadzenPanelMenuItem Text=@NestedMarkdownPosts.Key Icon="key_visualizer" >
+@using System.Text.RegularExpressions
+
+<RadzenPanelMenuItem 
+    Text=@NestedMarkdownPosts.Key Icon="folder"
+    Style=@GetCategoryMenuItemStyle() >
     @if (_standaloneMarkdownPosts.Any())
     {
         foreach (string standaloneMarkdownPost in _standaloneMarkdownPosts)
@@ -13,13 +17,17 @@
     {
         foreach (KeyValuePair<string, List<string>> nestedMarkdownPost in _nestedMarkdownPosts)
         {
-            <RecursiveCategoryNavMenu NestedMarkdownPosts=@nestedMarkdownPost />
+            <RecursiveCategoryNavMenu 
+                NestedMarkdownPosts=@nestedMarkdownPost
+                IsNestedCategroyMenuItem=true
+            />
         }
     }
 </RadzenPanelMenuItem>
 
 @code {
     [Parameter] public required KeyValuePair<string, List<string>> NestedMarkdownPosts { get; set; }
+    [Parameter] public bool IsNestedCategroyMenuItem {get;set;} = false;
     private HashSet<string> _standaloneMarkdownPosts = new();
     private Dictionary<string, List<string>> _nestedMarkdownPosts = new();
 
@@ -34,47 +42,32 @@
                 .Where(segments => segments.Length >= 2 && segments[1].EndsWith(".md", StringComparison.OrdinalIgnoreCase))
                 .Select(segments => Path.GetFileNameWithoutExtension(segments[1]))
                 .ToHashSet() ?? new HashSet<string>();
-            
-            
-            @* var aa = NestedMarkdownPosts.Value?
-                .Select(path => path.Split('/'))
-                .Where(segments => segments.Length >= 2 && !segments[1].EndsWith(".md"))
+
+            int indexToSplitAt = 0;
+
+            var ds = NestedMarkdownPosts.Value?.Where(path => !_standaloneMarkdownPosts.Contains(Path.GetFileNameWithoutExtension(path))).ToList();
+            var trimmed = ds.Select(p => p.Replace($"{NestedMarkdownPosts.Key}/", "")).ToList();
+
+            var gh = trimmed.Where(path => path.Contains('/'))
                 .GroupBy(
-                    path => path.Split('/')[1],
+                    path => path.Split('/')[indexToSplitAt],
                     path => path
                 ).ToDictionary(
                     g => g.Key,
                     g => g.ToList()
                 );
+            _nestedMarkdownPosts = gh;
+            
+        } catch (Exception) { }
+    }
 
-                foreach(var qq in aa)
-                {
-                    Console.WriteLine(qq.Key);
-                    foreach(string zz in qq.Value)
-                    {
-                        Console.WriteLine(zz);
-                    }
-                } *@
-            @* _nestedMarkdownPosts = NestedMarkdownPosts.Value!
-                .Select(path => path.Split('/', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
-                .Select(path =>
-                {
-                    var segments = path.Split('/');
-                    return new
-                    {
-                        Key = segments[1],
-                        RemainingPath = string.Join('/', segments.Skip(1))
-                    };
-                })
-                .GroupBy(
-                    x => x.Key,
-                    x => x.RemainingPath
-                )
-                .ToDictionary(
-                    g => g.Key,
-                    g => g.ToList()
-                ); *@
-        }
-        catch (Exception) { }
+    private string GetCategoryMenuItemStyle()
+    {
+        string style = "overflow-wrap:anywhere;";
+        
+        if (IsNestedCategroyMenuItem)
+            style += "margin-left:10px;";
+
+        return style;
     }
 }

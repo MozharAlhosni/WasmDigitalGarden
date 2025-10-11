@@ -44,6 +44,7 @@
         List<string> paths = manifest
             .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .ToList();
+        paths.RemoveAll(line => line.Contains(".DS_Store", StringComparison.OrdinalIgnoreCase));
 
         _standaloneMarkdownPosts = paths
             .Where(
