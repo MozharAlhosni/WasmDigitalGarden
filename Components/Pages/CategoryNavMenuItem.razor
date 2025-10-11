@@ -1,7 +1,8 @@
 @using System.Text.RegularExpressions
 
 <RadzenPanelMenuItem 
-    Text=@NestedMarkdownPosts.Key Icon="folder"
+    Text=@NestedMarkdownPosts.Key 
+    Icon="folder"
     Style=@GetCategoryMenuItemStyle()>
 
     @if (_standaloneMarkdownPosts.Any())
@@ -9,7 +10,7 @@
         foreach (string standaloneMarkdownPost in _standaloneMarkdownPosts)
         {
             <MarkdownPostNavMenuItem 
-                MarkdownFilePath=@($"{NestedMarkdownPosts.Key}/{standaloneMarkdownPost}")
+                MarkdownFilePath=@($"{PreviousApexCategory}{NestedMarkdownPosts.Key}/{standaloneMarkdownPost}")
                 IsNestedMenuItem=true 
             />
         }
@@ -20,7 +21,8 @@
         {
             <CategoryNavMenuItem 
                 NestedMarkdownPosts=@nestedMarkdownPost
-                IsNestedCategroyMenuItem=true
+                IsNestedCategoryMenuItem=true
+                PreviousApexCategory=@($"{PreviousApexCategory}{NestedMarkdownPosts.Key}/")
             />
         }
     }
@@ -29,6 +31,7 @@
 @code {
     [Parameter] public required KeyValuePair<string, List<string>> NestedMarkdownPosts { get; set; }
     [Parameter] public bool IsNestedCategoryMenuItem { get; set; } = false;
+    [Parameter] public string PreviousApexCategory { get; set; } = string.Empty;
 
     private HashSet<string> _standaloneMarkdownPosts = new();
     private Dictionary<string, List<string>> _nestedMarkdownPosts = new();
