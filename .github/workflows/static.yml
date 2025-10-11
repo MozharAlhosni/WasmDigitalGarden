@@ -2,7 +2,7 @@
 # taken from https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml
 name: Deploy static content to Pages
 env:
-  PUBLISH_DIR: WasmDigitalGarden/WasmDigitalGarden/bin/Release/net9.0/publish
+  PUBLISH_DIR: publish
 
 on:
   # Runs on pushes targeting the default branch for the app's folder path
@@ -46,7 +46,7 @@ jobs:
           dotnet-version: '9.0'
           
       - name: Publish app
-        run: dotnet publish WasmDigitalGarden.csproj -c Release
+        run: dotnet publish WasmDigitalGarden/WasmDigitalGarden.csproj -c Release -o publish
 
       #- name: Rewrite base href
       #  uses: SteveSandersonMS/ghaction-rewrite-base-href@5b54862a8831e012d4f1a8b2660894415fdde8ec # v1.1.0
