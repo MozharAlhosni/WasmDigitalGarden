@@ -2,7 +2,7 @@
 # taken from https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml
 name: Deploy static content to Pages
 env:
-  PUBLISH_DIR: WasmDigitalGarden/bin/Release/net9.0/publish/wwwroot
+  PUBLISH_DIR: WasmDigitalGarden/bin/Release/net9.0/publish/
 
 on:
   # Runs on pushes targeting the default branch for the app's folder path
