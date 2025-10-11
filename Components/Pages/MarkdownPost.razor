@@ -3,23 +3,32 @@
 
 <PageTitle>@_pageTitle</PageTitle>
 
-<RadzenMarkdown class="rz-p-0 rz-p-md-12" AutoLinkHeadingDepth="6" Text="@_markdownFileContent" />
+<RadzenMarkdown 
+    class="rz-p-0 rz-p-md-12" 
+    AutoLinkHeadingDepth="6" 
+    Text="@_markdownFileContent" 
+/>
 
 @code {
     [Parameter] public required string MarkdownFilePath { get; set; }
+
     private string _pageTitle = string.Empty;
     private string _markdownFileContent = string.Empty;
-    private string _digitalGardenRootDirectory = "DigitalGarden";
+    private readonly string _digitalGardenRootDirectory = "DigitalGarden";
 
     protected override async Task OnParametersSetAsync()
     {
         try
         {
+            MarkdownFilePath = MarkdownFilePath.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
+                ? MarkdownFilePath
+                : $"{MarkdownFilePath}.md";
+
             _pageTitle = Path.GetFileNameWithoutExtension(MarkdownFilePath);
-            MarkdownFilePath = MarkdownFilePath.EndsWith(".md") ? MarkdownFilePath : $"{MarkdownFilePath}.md";
-            
-            _markdownFileContent = await HttpClient.GetStringAsync($"{_digitalGardenRootDirectory}/{MarkdownFilePath}");
-        }
-        catch (Exception) { }
+
+            _markdownFileContent = await HttpClient.GetStringAsync(
+                $"{_digitalGardenRootDirectory}/{MarkdownFilePath}"
+            );
+        } catch (Exception) {}
     }
 }

@@ -3,7 +3,9 @@
 <RadzenPanelMenu Multiple=true>
     @if (!_manifestLoaded)
     {
-        <RadzenPanelMenuItem Text="Loading..." Style="cursor: not-allowed; pointer-events: none" />
+        <RadzenPanelMenuItem 
+            Text="Loading..." 
+            Style="cursor: not-allowed; pointer-events: none" />
     }
 
     @if (_manifestLoaded)
@@ -12,7 +14,7 @@
         {
             foreach (string markdownFilePath in _standaloneMarkdownPosts)
             {
-                <MarkdownPostMenuItem MarkdownFilePath=@($"{markdownFilePath}") />
+                <MarkdownPostNavMenuItem MarkdownFilePath=@($"{markdownFilePath}") />
             }
         }
 
@@ -20,12 +22,11 @@
         {
             foreach (KeyValuePair<string, List<string>> nestedMarkdownPost in _nestedMarkdownPosts)
             {
-                <RecursiveCategoryNavMenu NestedMarkdownPosts=@nestedMarkdownPost />
+                <CategoryNavMenuItem NestedMarkdownPosts=@nestedMarkdownPost />
             }
         }
     }
 </RadzenPanelMenu>
-
 
 @code {
     private bool _manifestLoaded;
@@ -34,9 +35,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        string manifest = await HttpClient.GetStringAsync("DigitalGarden/manifest.txt");
-        ProcessManifest(manifest);
-        _manifestLoaded = true;
+        try
+        {
+            string manifest = await HttpClient.GetStringAsync("DigitalGarden/manifest.txt");
+
+            ProcessManifest(manifest);
+
+            _manifestLoaded = true;
+        } catch (Exception) {}
     }
 
     private void ProcessManifest(string manifest)
@@ -44,19 +50,17 @@
         List<string> paths = manifest
             .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             .ToList();
+
         paths.RemoveAll(line => line.Contains(".DS_Store", StringComparison.OrdinalIgnoreCase));
 
         _standaloneMarkdownPosts = paths
-            .Where(
-                path => !path.Contains('/')
-                && path.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
-                && "Home.md" != path
-            )
+            .Where(path => !path.Contains('/')
+                           && path.EndsWith(".md", StringComparison.OrdinalIgnoreCase)
+                           && !string.Equals(path, "Home.md", StringComparison.OrdinalIgnoreCase))
             .Select(path => path[..^3])
             .ToHashSet();
-        
-        int indexToSplitAt = 0;
 
+        int indexToSplitAt = 0;
         _nestedMarkdownPosts = paths
             .Where(path => path.Contains('/'))
             .GroupBy(
@@ -64,8 +68,8 @@
                 path => path
             )
             .ToDictionary(
-                g => g.Key,
-                g => g.ToList()
+                group => group.Key,
+                group => group.ToList()
             );
     }
 }
