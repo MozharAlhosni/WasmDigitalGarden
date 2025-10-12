@@ -441,3 +441,4 @@ Later on I will need to clean it up and categorize things.
 - [pam · GitHub Topics](https://github.com/topics/pam)
 - [Kong vs MuleSoft: Performance Comparison | Kong Inc.](https://konghq.com/performance-comparison/kong-vs-mulesoft?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=mulesoft&amp;utm_term=mulesoft&amp;utm_content=kong-vs-mulesoft_landing-page_search&amp;gad_source=1&amp;gad_campaignid=20614118346&amp;gclid=Cj0KCQjwgKjHBhChARIsAPJR3xfG1JntYjMIV02PxXrFZbAuSiJ53E7_1Fp7Pj_bjdhwU5ftTRAgQp0aAjA9EALw_wcB)
 - [What is Runtime Application Self-Protection (RASP)? How Does it Work? | Fortinet](https://www.fortinet.com/resources/cyberglossary/runtime-application-self-protection-rasp)
+- [https://www.danbp.org/bookmarks2md.html](https://www.danbp.org/bookmarks2md.html)

@@ -1,10 +1,38 @@
+# Home
+
+Hello, I’m **Mozhar Alhosni** — welcome to my Digital Garden 🌱  
+This is where I cultivate and share the knowledge I harvest every day.
+
+I’m a **Cybersecurity Engineer** with experience across both **Offensive** and **Defensive Security** domains.
+
 ---
-title: Home
-Last Updated: 10/10/2030
+
+## 🧠 Technical Hobbies & Projects
+
+- **.NET Development** — Highly proficient in C#, focusing on _MVC APIs_, _Minimal APIs_, and _Blazor_, with a strong emphasis on **secure coding practices**.  
+- **Personal Projects** — This Digital Garden is built entirely with **Blazor WebAssembly**, inspired by _Material for MkDocs_. I’ve also implemented the same project using **Blazor Server**.  
+- **Hack The Box** — [Hack The Box Profile](https://app.hackthebox.com/profile/927345). Developed two custom machines: _Blazorized_ and _TargetedOps_.  
+- **Open Source Contributions** — Actively contributing to C# security tools and frameworks, including **CrucibleC2**.  
+- **Book Reviews** — Reviewer for **Manning Publications**, including titles such as:
+  - _Secure APIs_  
+  - _Acing the ISC2 Cybersecurity Certification_  
+  - _Learn Docker in a Month of Lunches, 2nd Edition_  
+- **Emerging Tech & Security** — Enthusiastic about **WebAssembly (WASM)** and continuously exploring the latest in web security trends and research.
+
 ---
 
-Hello. I am **Mozhar Alhosni**. Welcome to my Digital Garden, in where I share the knowledge I harvest everyday.
+## 💼 Professional Experience
 
-I am an Offensive Cybersecurity Specialist. My passion is programming (been doing it for over 10 years) and web development and security. I specialize in `ASP.NET`, with a focus on `Web APIs` and `Blazor` web apps (`.NET 7` and `.NET 8`).
+- **Hack The Box Ltd** — *Training Developer*  
+  _Feb 2022 – Jun 2024_  
+- **MDD Supply Chainer** — *Cybersecurity Officer*  
+  _Jun 2024 – Sep 2025_  
+- **MDD Plus for Debt-based Crowdfunding** — *Cybersecurity Engineer*  
+  _Oct 2025 – Present_
 
-If you would like to contact me, email me over `mozharalhosni@gmail.com`.
+---
+
+## 📬 Contact
+
+I’d love to connect — feel free to reach me at  
+📧 **[mozharalhosni@gmail.com](mailto:mozharalhosni@gmail.com)**
