@@ -4,9 +4,6 @@ I always bookmark interesting things I come by when serving the web. Below is a 
 
 Later on I will need to clean it up and categorize things.
 
-# Links
-
-# Bookmarks
 ## Bookmarks
 - [All-in-one incident management platform | incident.io](https://incident.io/?utm_source=plane-app&amp;utm_medium=status-pages)
 - [TortoiseHg](https://tortoisehg.bitbucket.io/)
@@ -307,7 +304,7 @@ Later on I will need to clean it up and categorize things.
 - [The FreeDOS Project](https://www.freedos.org/)
 - [Quantum Computing Report - Market Analysis, News &amp; Resources](https://quantumcomputingreport.com/)
 - [ArangoGraph Insights Platform](https://dashboard.arangodb.cloud/home)
-- [\](https://github.com/Cisco-Talos/Mussels)
+- [https://github.com/Cisco-Talos/Mussels](https://github.com/Cisco-Talos/Mussels)
 - [Exim Internet Mailer](https://www.exim.org/)
 - [Post-installation steps | Docker Docs](https://docs.docker.com/engine/install/linux-postinstall/)
 - [Security | Docker Docs](https://docs.docker.com/engine/security/)
