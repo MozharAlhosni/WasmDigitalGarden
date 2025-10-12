@@ -1,14 +1,14 @@
 # taken from https://github.com/dotnet/blazor-samples/blob/main/.github/workflows/static.yml
-name: Deploy static content to Pages
+name: Build & Deploy Blazor WASM to Pages
+
 env:
   PUBLISH_DIR: publish/wwwroot
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 on:
   push:
-    branches:
-      - main
-
-  workflow_dispatch:
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -35,6 +35,11 @@ jobs:
         uses: actions/setup-dotnet@3951f0dfe7a07e2313ec93c75700083e2005cbab # v4.3.0
         with:
           dotnet-version: '9.0'
+          cache: true
+          cache-dependency-path: |
+            **/*.csproj
+            **/Directory.Packages.props
+            global.json
           
       - name: Publish app
         run: dotnet publish WasmDigitalGarden.csproj -c Release -o publish
