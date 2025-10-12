@@ -1,8 +1,8 @@
-- https://www.amazon.com/Operating-System-Concepts-Abraham-Silberschatz-ebook/dp/B07CVKH7BD?ref_=ast_author_mpb
-- https://crypto.stanford.edu/seclab/sem.html
-- https://crypto.stanford.edu/~dabo/cs255/
-- https://cs144.github.io/
-- https://cs155.stanford.edu/syllabus.html
-- https://cs155.stanford.edu/papers/ossecurity.pdf
-- https://cs251.stanford.edu/
-- https://crypto.stanford.edu/~dabo/cryptobook/BonehShoup_0_6.pdf
+- [https://www.amazon.com/Operating-System-Concepts-Abraham-Silberschatz-ebook/dp/B07CVKH7BD?ref_=ast_author_mpb](https://www.amazon.com/Operating-System-Concepts-Abraham-Silberschatz-ebook/dp/B07CVKH7BD?ref_=ast_author_mpb)
+- [https://crypto.stanford.edu/seclab/sem.html](https://crypto.stanford.edu/seclab/sem.html)
+- [https://crypto.stanford.edu/~dabo/cs255/](https://crypto.stanford.edu/~dabo/cs255/)
+- [https://cs144.github.io/](https://cs144.github.io/)
+- [https://cs155.stanford.edu/syllabus.html](https://cs155.stanford.edu/syllabus.html)
+- [https://cs155.stanford.edu/papers/ossecurity.pdf](https://cs155.stanford.edu/papers/ossecurity.pdf)
+- [https://cs251.stanford.edu/](https://cs251.stanford.edu/)
+- [https://crypto.stanford.edu/~dabo/cryptobook/BonehShoup_0_6.pdf](https://crypto.stanford.edu/~dabo/cryptobook/BonehShoup_0_6.pdf)
