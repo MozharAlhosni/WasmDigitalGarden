@@ -1,1 +1,1 @@
-https://usacac.army.mil/organizations/red-team-program 
+- [https://usacac.army.mil/organizations/red-team-program](https://usacac.army.mil/organizations/red-team-program)

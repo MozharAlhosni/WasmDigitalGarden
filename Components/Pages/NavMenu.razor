@@ -52,6 +52,7 @@
             .ToList();
 
         paths.RemoveAll(line => line.Contains(".DS_Store", StringComparison.OrdinalIgnoreCase));
+        paths.RemoveAll(line => line.StartsWith("assets/", StringComparison.OrdinalIgnoreCase));
 
         _standaloneMarkdownPosts = paths
             .Where(path => !path.Contains('/')
