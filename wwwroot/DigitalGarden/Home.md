@@ -7,8 +7,6 @@ This is where I cultivate and share the knowledge I harvest every day.
 
 I’m a **Cybersecurity Engineer** with experience across both **Offensive** and **Defensive Security** domains.
 
----
-
 ## Technical Hobbies & Projects
 
 - **.NET Development** — Highly proficient in C#, focusing on _MVC APIs_, _Minimal APIs_, and _Blazor_, with a strong emphasis on **secure coding practices**.  
@@ -25,4 +23,4 @@ I’m a **Cybersecurity Engineer** with experience across both **Offensive** and
 
 Below you can find my CV:
 
-<iframe src="DigitalGarden/assets/mozhars_cv_latest.pdf" width="100%" height="1000px" style="border: 2px solid #0c91e3ff; border-radius: 8px;"></iframe>
+<iframe src="DigitalGarden/assets/mozhars_cv_latest.pdf" width="100%" height="950px" style="border: 2px solid #0c91e3ff; border-radius: 8px;"></iframe>
