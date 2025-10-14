@@ -1,1 +1,0 @@
-https://rytr.me/ provides AI generated content

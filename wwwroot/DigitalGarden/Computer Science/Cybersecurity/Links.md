@@ -4,6 +4,6 @@
 - [Mathematics](https://arxiv.org/archive/math)
 - [Computer Science](https://info.arxiv.org/help/cs/index.html)
 - [Electrical Engineering and Systems Science](https://arxiv.org/archive/eess)
-xxxx
+- [https://insinuator.net/](https://insinuator.net/)
+- [https://github.com/Velocidex/WinPmem?tab=readme-ov-file](https://github.com/Velocidex/WinPmem?tab=readme-ov-file)
 
-![alt text](image.png)
