@@ -1,5 +1,7 @@
 # Home
 
+## Me
+
 Hello, I’m **Mozhar Alhosni** — welcome to my Digital Garden 🌱
 This is where I cultivate and share the knowledge I harvest every day.
 
@@ -19,24 +21,7 @@ I’m a **Cybersecurity Engineer** with experience across both **Offensive** and
   - _Learn Docker in a Month of Lunches, 2nd Edition_  
 - **Emerging Tech & Security** — Enthusiastic about **WebAssembly (WASM)** and continuously exploring the latest in web security trends and research.
 
----
-
-## Professional Experience
-
-- **Hack The Box Ltd** — *Training Developer*  
-  _Feb 2022 – Jun 2024_  
-- **MDD Supply Chainer** — *Cybersecurity Officer*  
-  _Jun 2024 – Sep 2025_  
-- **MDD Plus for Debt-based Crowdfunding** — *Cybersecurity Engineer*  
-  _Oct 2025 – Present_
-
----
-
-## Contact
-
-I’d love to connect — feel free to reach me at **[mozharalhosni@gmail.com](mailto:mozharalhosni@gmail.com)**
-
-## My CV
+## CV
 
 Below you can find my CV:
 
