@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Digital Garden</title>
+        <title>Redirecting...</title>
+        <meta name="robots" content="noindex" />
         <script type="text/javascript">
-            var segmentCount = 1;
-
-            var l = window.location;
-            l.replace(
-                l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-                l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
-                l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
-                (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-                l.hash
-            );
+            (function () {
+                const redirectUrl = window.location.href;
+            
+                fetch('/index.html', { cache: "no-store" })
+                    .then(response => {
+                        if (!response.ok) throw new Error('Failed' + response.status);
+                        return response.text();
+                    })
+                    .then(html => {
+                        document.open();
+                        document.write(html);
+                        document.close();
+            
+                        history.replaceStatus(null, '', redirectUrl);
+                    })
+                    .catch(error => {
+                        window.location.replace('/');
+                    });
+            })();
         </script>
     </head>
-    <body>
-    </body>
+    <body></body>
 </html>
